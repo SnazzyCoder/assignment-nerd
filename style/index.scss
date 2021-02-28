@@ -45,8 +45,10 @@ body, html{
     .cta{
         background-color: $green;
         padding: 13px 2.2em;
+        display: inline-block;
         border-radius: 10px;
         color: white !important;
+        cursor: pointer;
         font: Product-Bold, $alternatives;
 
         &:not(.small):hover{
@@ -108,8 +110,9 @@ body, html{
         }
         .top-gradient{
                 z-index: -999;
-                width: 400px;
+                max-width: 400px;
                 height: 400px;
+                width: 400px;
                 content: '';
                 top: -150px;
                 right: -150px;
@@ -144,19 +147,6 @@ body, html{
             position: relative;
             
         }
-        .intro{
-            &::before{
-                position: absolute;
-                content: '';
-                left: -100px;
-                bottom: -150px;
-                background: $green-gradient;
-                height: 200px;
-                width: 200px;
-                border-radius: 50%;
-                z-index: -9999;
-            }
-        }
         .intro:nth-child(2n)::before{
             background: $red-gradient !important;
             scale: 130%;
@@ -187,8 +177,20 @@ body, html{
                 margin-right: 5vw;
 
             }
-            *{
+            *:not(.cta){
                 margin: 20px 0;
+            }
+
+            &::before{
+                position: absolute;
+                content: '';
+                left: -100px;
+                bottom: -150px;
+                background: $green-gradient;
+                height: 200px;
+                width: 200px;
+                border-radius: 50%;
+                z-index: -9999;
             }
 
             h1{
@@ -223,39 +225,51 @@ body, html{
 
         }
         .stretch{
-            background: $red-gradient;
+            background: $red;
             padding: 1vw 1vw !important;
             color: white !important;
             text-align: center;
 
-            // Animations
             @keyframes marquee {
-            0% {
-                transform: translateX(0%)
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+                0% { left: -30px; }
+                100% { left: -3000px; }
             }
             .services{
-                display: flex;
-                flex-wrap: nowrap;
-                align-items: center;
-                justify-content: center;
+                text-align: start !important;
+                width: 5000px;
+                margin: 10px 0;
+                height: 50px;
+                position: relative;
+                animation: marquee 40s linear infinite;
+                overflow: hidden;
                 // animations
-                // animation: marquee 10s linear infinite;
 
-                *{
-                    display: inline-block;
-                    flex: auto;
-                    background: rgba($color:white, $alpha: 0.3);
-                    border-radius: 10px;
-                    padding: 5px 10px;
+                .one-col{
+                    .service{
+                        margin: 0 10px;
+                        display: inline-block;
+                        background: rgba($color:white, $alpha: 0.3);
+                        border-radius: 10px;
+                        padding: 5px 10px;
+                        overflow: hidden;
+                    }
+                }
+
+                &:nth-of-type(2), &:nth-of-type(6){
+                    transform: translateX(-20%);
+                }
+                &:nth-of-type(3), &:nth-of-type(7){
+                    transform: translateX(-5%);
+                }
+                &:nth-of-type(4), &:nth-of-type(8){
+                    transform: translateX(-10%);
                 }
             }
+
+            
             
             *{
-                margin: 5px;
+                margin: 10px;
             }
         }
 
@@ -267,13 +281,16 @@ body, html{
             }
             .reviews{
                 display: flex;
+                width: 100%;
+                margin-top: 0;
                 justify-content: center;
                 .review{
                     background-color: white;
-                    padding: 30px;
+                    padding: clamp(10px, 3vw, 40px);
+                    font-size: clamp(16px, 2vw, 18px);
                     border-radius: 30px;
                     box-shadow: 0 0 5px $grey;
-                    width: 400px;
+                    max-width: 400px;
                     &:nth-of-type(2n), &:hover{
                         scale: 1.1;
                         z-index: 99;
@@ -441,7 +458,7 @@ body, html{
         .intro{
             flex-direction: column;
             box-sizing: border-box;
-            padding: 0 40px;
+            padding: 0 2vw;
             align-content: center;
             justify-content: center;
             text-align: center !important;
@@ -449,16 +466,40 @@ body, html{
                 text-align: center !important;
             }
             *{
-                width: 100% !important;
+                &:not(.cta) {width: 100% !important;}
+                float: none;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
             }
             h1::after{
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translateX(-80%);
                 scale: 60% !important;
                 margin-bottom: -10px;
                 opacity: 70%;
             }
 
+        }
+
+        .reviews-section{
+            padding-top: 0;
+            *:not(.review), .review:first-of-type{
+                margin-top: 0 !important;
+            }
+            .reviews{
+                padding: 0;
+                width: 80%;
+                flex-direction: column;
+                padding: 20px;
+                box-sizing: border-box;
+                align-items: center !important;
+                .review:nth-of-type(2){
+                    scale: 1 !important;
+                    &:hover{
+                        scale: 1.1 !important;
+                    }
+                }
+            }
         }
 
         .intro:nth-child(2n){

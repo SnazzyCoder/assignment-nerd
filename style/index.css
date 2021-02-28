@@ -38,8 +38,10 @@ body .helvetica, html .helvetica {
 body .cta, html .cta {
   background-color: #008B6F;
   padding: 13px 2.2em;
+  display: inline-block;
   border-radius: 10px;
   color: white !important;
+  cursor: pointer;
   font: Product-Bold, Arial, Helvetica;
 }
 
@@ -107,8 +109,9 @@ body .nav .right, html .nav .right {
 
 body .nav .top-gradient, html .nav .top-gradient {
   z-index: -999;
-  width: 400px;
+  max-width: 400px;
   height: 400px;
+  width: 400px;
   content: '';
   top: -150px;
   right: -150px;
@@ -145,18 +148,6 @@ body main section, html main section {
   display: block;
   padding: 20px 0 0;
   position: relative;
-}
-
-body main .intro::before, html main .intro::before {
-  position: absolute;
-  content: '';
-  left: -100px;
-  bottom: -150px;
-  background: linear-gradient(45deg, #008B6F, rgba(0, 139, 111, 0.2));
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  z-index: -9999;
 }
 
 body main .intro:nth-child(2n)::before, html main .intro:nth-child(2n)::before {
@@ -199,8 +190,20 @@ body main .intro .intro-left, html main .intro .intro-left {
   margin-right: 5vw;
 }
 
-body main .intro *, html main .intro * {
+body main .intro *:not(.cta), html main .intro *:not(.cta) {
   margin: 20px 0;
+}
+
+body main .intro::before, html main .intro::before {
+  position: absolute;
+  content: '';
+  left: -100px;
+  bottom: -150px;
+  background: linear-gradient(45deg, #008B6F, rgba(0, 139, 111, 0.2));
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  z-index: -9999;
 }
 
 body main .intro h1, html main .intro h1 {
@@ -237,7 +240,7 @@ body main .intro img, html main .intro img {
 }
 
 body main .stretch, html main .stretch {
-  background: linear-gradient(45deg, #E8505B, rgba(232, 80, 91, 0.5));
+  background: #E8505B;
   padding: 1vw 1vw !important;
   color: white !important;
   text-align: center;
@@ -245,52 +248,59 @@ body main .stretch, html main .stretch {
 
 @-webkit-keyframes marquee {
   0% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%);
+    left: -30px;
   }
   100% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
+    left: -3000px;
   }
 }
 
 @keyframes marquee {
   0% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%);
+    left: -30px;
   }
   100% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
+    left: -3000px;
   }
 }
 
 body main .stretch .services, html main .stretch .services {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  text-align: start !important;
+  width: 5000px;
+  margin: 10px 0;
+  height: 50px;
+  position: relative;
+  -webkit-animation: marquee 40s linear infinite;
+          animation: marquee 40s linear infinite;
+  overflow: hidden;
 }
 
-body main .stretch .services *, html main .stretch .services * {
+body main .stretch .services .one-col .service, html main .stretch .services .one-col .service {
+  margin: 0 10px;
   display: inline-block;
-  -webkit-box-flex: 1;
-      -ms-flex: auto;
-          flex: auto;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   padding: 5px 10px;
+  overflow: hidden;
+}
+
+body main .stretch .services:nth-of-type(2), body main .stretch .services:nth-of-type(6), html main .stretch .services:nth-of-type(2), html main .stretch .services:nth-of-type(6) {
+  -webkit-transform: translateX(-20%);
+          transform: translateX(-20%);
+}
+
+body main .stretch .services:nth-of-type(3), body main .stretch .services:nth-of-type(7), html main .stretch .services:nth-of-type(3), html main .stretch .services:nth-of-type(7) {
+  -webkit-transform: translateX(-5%);
+          transform: translateX(-5%);
+}
+
+body main .stretch .services:nth-of-type(4), body main .stretch .services:nth-of-type(8), html main .stretch .services:nth-of-type(4), html main .stretch .services:nth-of-type(8) {
+  -webkit-transform: translateX(-10%);
+          transform: translateX(-10%);
 }
 
 body main .stretch *, html main .stretch * {
-  margin: 5px;
+  margin: 10px;
 }
 
 body main .reviews-section, html main .reviews-section {
@@ -306,6 +316,8 @@ body main .reviews-section .reviews, html main .reviews-section .reviews {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
+  margin-top: 0;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -313,11 +325,12 @@ body main .reviews-section .reviews, html main .reviews-section .reviews {
 
 body main .reviews-section .reviews .review, html main .reviews-section .reviews .review {
   background-color: white;
-  padding: 30px;
+  padding: clamp(10px, 3vw, 40px);
+  font-size: clamp(16px, 2vw, 18px);
   border-radius: 30px;
   -webkit-box-shadow: 0 0 5px #606060;
           box-shadow: 0 0 5px #606060;
-  width: 400px;
+  max-width: 400px;
 }
 
 body main .reviews-section .reviews .review:nth-of-type(2n), body main .reviews-section .reviews .review:hover, html main .reviews-section .reviews .review:nth-of-type(2n), html main .reviews-section .reviews .review:hover {
@@ -501,7 +514,7 @@ body footer .details a, html footer .details a {
             flex-direction: column;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    padding: 0 40px;
+    padding: 0 2vw;
     -ms-flex-line-pack: center;
         align-content: center;
     -webkit-box-pack: center;
@@ -513,15 +526,46 @@ body footer .details a, html footer .details a {
     text-align: center !important;
   }
   body .intro *, html .intro * {
+    float: none;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  body .intro *:not(.cta), html .intro *:not(.cta) {
     width: 100% !important;
   }
   body .intro h1::after, html .intro h1::after {
     left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    -webkit-transform: translateX(-80%);
+            transform: translateX(-80%);
     scale: 60% !important;
     margin-bottom: -10px;
     opacity: 70%;
+  }
+  body .reviews-section, html .reviews-section {
+    padding-top: 0;
+  }
+  body .reviews-section *:not(.review), body .reviews-section .review:first-of-type, html .reviews-section *:not(.review), html .reviews-section .review:first-of-type {
+    margin-top: 0 !important;
+  }
+  body .reviews-section .reviews, html .reviews-section .reviews {
+    padding: 0;
+    width: 80%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+            align-items: center !important;
+  }
+  body .reviews-section .reviews .review:nth-of-type(2), html .reviews-section .reviews .review:nth-of-type(2) {
+    scale: 1 !important;
+  }
+  body .reviews-section .reviews .review:nth-of-type(2):hover, html .reviews-section .reviews .review:nth-of-type(2):hover {
+    scale: 1.1 !important;
   }
   body .intro:nth-child(2n), html .intro:nth-child(2n) {
     -webkit-box-orient: vertical;
