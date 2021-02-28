@@ -242,6 +242,7 @@ body, html{
                 position: relative;
                 animation: marquee 40s linear infinite;
                 overflow: hidden;
+                overflow-wrap: normal;
                 // animations
 
                 .one-col{

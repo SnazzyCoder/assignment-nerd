@@ -273,6 +273,7 @@ body main .stretch .services, html main .stretch .services {
   -webkit-animation: marquee 40s linear infinite;
           animation: marquee 40s linear infinite;
   overflow: hidden;
+  overflow-wrap: normal;
 }
 
 body main .stretch .services .one-col .service, html main .stretch .services .one-col .service {
