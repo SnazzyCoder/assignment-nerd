@@ -283,6 +283,13 @@ body main .stretch .services .one-col .service, html main .stretch .services .on
   border-radius: 10px;
   padding: 5px 10px;
   overflow: hidden;
+  -ms-touch-action: none;
+      touch-action: none;
+}
+
+body main .stretch .services *, html main .stretch .services * {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 body main .stretch .services:nth-of-type(2), body main .stretch .services:nth-of-type(6), html main .stretch .services:nth-of-type(2), html main .stretch .services:nth-of-type(6) {
@@ -536,8 +543,8 @@ body footer .details a, html footer .details a {
   }
   body .intro h1::after, html .intro h1::after {
     left: 50%;
-    -webkit-transform: translateX(-80%);
-            transform: translateX(-80%);
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
     scale: 60% !important;
     margin-bottom: -10px;
     opacity: 70%;
