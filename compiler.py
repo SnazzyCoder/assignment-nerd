@@ -5,7 +5,7 @@ from shutil import copytree, rmtree, ignore_patterns
 try: rmtree("./build")
 except Exception as e: print("Creating build folder", e, "Occured")
 
-copytree("./", "./build", ignore=ignore_patterns('*.py', "templates"))
+copytree("./", "./build", ignore=ignore_patterns('*.py', "templates", "*.git"))
 
 
 ENV = Environment(loader=FileSystemLoader('./templates'))
